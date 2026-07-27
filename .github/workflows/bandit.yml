@@ -54,3 +54,4 @@ jobs:
             ghcr.io/pycqa/bandit/bandit:latest \
 
             -r .
+            --severity-level high
