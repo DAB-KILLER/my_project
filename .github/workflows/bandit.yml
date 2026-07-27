@@ -51,7 +51,7 @@ jobs:
 
             -w /src \
 
-            ghcr.io/pycqa/bandit/bandit:latest \
+            cytopia/bandit:latest-py3.8 \
 
             -r .
             --severity-level high
