@@ -26,6 +26,7 @@ jobs:
           --out /src/reports \
           --failOnCVSS 7
       - name: Upload report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
          name: dependency-check-report
