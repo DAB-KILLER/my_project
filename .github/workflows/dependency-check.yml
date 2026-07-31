@@ -7,27 +7,27 @@ on:
     branches:
       - master
 jobs:
-  dependency-check:
-    runs-on: ubuntu-latest
-    steps:
+ dependency-check:
+  runs-on: ubuntu-latest
+  steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Pull dependency check image
         run: docker pull owasp/dependency-check
       - name: Create reports folder
-      run: mkdir -p reports
-      - name: Run Dependency check
-      run: |
+        run: mkdir -p reports
+      - name: Owasp Dependency check
+        run: |
           docker run --rm \
-            -v "${{ github.workspace }}:/src" \
-            owasp/dependency-check \
-            --scan /src \
-            --format HTML
-            --out /src/reports
-            --failOnCVSS 7
-      - name:Upload report
-         uses:actions/upload-artifact@v4
-       with:
-        name:dependency-check-report
-        path:reports/
+          -v "${{ github.workspace }}:/src" \
+          owasp/dependency-check \
+          --scan /src \
+          --format HTML \
+          --out /src/reports \
+          --failOnCVSS 7
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+       - name: dependency-check-report
+         path: reports/
 
