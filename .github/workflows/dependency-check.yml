@@ -20,8 +20,8 @@ jobs:
         run: |
           docker run --rm \
           -v "${{ github.workspace }}:/src" \
-          -v "{{github.workspace}}/dependency-check-data:/usr/share/dependency-check/data" \
-          -v "{{github.workspace}}/reports:report" \
+          -v "${{github.workspace}}/dependency-check-data:/usr/share/dependency-check/data" \
+          -v "${{github.workspace}}/reports:report" \
           owasp/dependency-check \
           --scan /src \
           --format HTML \
