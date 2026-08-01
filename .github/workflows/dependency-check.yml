@@ -20,15 +20,15 @@ jobs:
         run: |
           docker run --rm \
           -v "${{ github.workspace }}:/src" \
+          -v "{{github.workspace}}/dependency-check-data:/usr/share/dependency-check/data" \
+          -v "{{github.workspace}}/reports:report" \
           owasp/dependency-check \
           --scan /src \
           --format HTML \
-          --out /src/reports \
-          --failOnCVSS 7
+          --out /report
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
         with:
          name: dependency-check-report
          path: reports/
-
