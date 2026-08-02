@@ -35,7 +35,8 @@ jobs:
       - name: Check reports folder
         if: always()
         run: |
-        echo "The reports are here !!! " && ls -la reports
+          echo "The reports are here !!! "
+          ls -la reports
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
