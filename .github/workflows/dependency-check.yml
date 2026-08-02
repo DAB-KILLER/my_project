@@ -26,13 +26,17 @@ jobs:
         run: |
           docker run --rm \
           -v "${{ github.workspace }}:/src" \
-          -v "${{ github.workspace }}/reports:/report" \
           owasp/dependency-check:latest \
           --scan /src \
           --format HTML \
-          --out /report \
+          --out /src/reports \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
           --failOnCVSS 7
+      - name: Check reports folder
+        if: always()
+        run: |
+        echo "The reports are here !!! "
+        ls -la reports
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
