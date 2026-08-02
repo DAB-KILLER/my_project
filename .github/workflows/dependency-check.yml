@@ -28,7 +28,7 @@ jobs:
           --scan /src \
           --format HTML \
           --out /report \
-          --nvdApiKey "${ NVD_API_KEY }" \
+          --nvdApiKey "${{ NVD_API_KEY }}" \
           --failOnCVSS 7
       - name: Upload report
         if: always()
