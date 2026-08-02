@@ -18,6 +18,16 @@ jobs:
 
       - name: Create reports folder
         run: mkdir -p reports
+
+      - name: remove old corrupt database
+        run: rm -rf dependency-check-data
+
+      - name: Cache dependency check database
+        uses: actions/cache@v4
+        with:
+            path: dependency-check-data
+            key: dependency-check-data
+
       - name: Owasp Dependency check
         run: |
           docker run --rm \
