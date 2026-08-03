@@ -30,7 +30,7 @@ jobs:
           --scan /src \
           --format HTML \
           --out /src/reports \
-          --log /src/reports/dependency-check.log
+          --log /src/reports/dependency-check.log \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
           --failOnCVSS 7
       - name: Find reports folder
