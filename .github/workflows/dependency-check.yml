@@ -32,11 +32,11 @@ jobs:
           --out /src/reports \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
           --failOnCVSS 7
-      - name: Check reports folder
+      - name: Find reports folder
         if: always()
         run: |
-          echo "The reports are here !!! "
-          ls -la reports
+           find . -name
+           "dependency-check-report*"
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
