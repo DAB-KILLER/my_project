@@ -16,7 +16,7 @@ jobs:
            fetch-depth: 0
       - name: Pull Gitleaks Docker image
         run: docker pull securecodebox/gitleaks:v7.3.0
-      - name: Run Bandit
+      - name: Run Gitleaks
         run: |
           docker run --rm \
             -v "${{ github.workspace }}:/repo" \
