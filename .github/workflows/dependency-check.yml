@@ -12,20 +12,31 @@ jobs:
   steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Pull dependency check image
         run: docker pull owasp/dependency-check
+
       - name: Create reports folder
         run: mkdir -p reports
+
+      - name: remove old corrupt database
+        run: rm -rf dependency-check-data
+
       - name: Owasp Dependency check
         run: |
           docker run --rm \
           -v "${{ github.workspace }}:/src" \
-          -v "${{ github.workspace }}/dependency-check-data:/usr/share/dependency-check/data" \
-          -v "${{ github.workspace }}/reports:/report" \
-          owasp/dependency-check \
+          owasp/dependency-check:12.1.8 \
           --scan /src \
           --format HTML \
-          --out /report
+          --out /src/reports \
+          --log /src/reports/dependency-check.log \
+          --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
+          --failOnCVSS 7
+      - name: Find reports folder
+        if: always()
+        run: |
+           find . -name  "dependency-check-report*"
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4

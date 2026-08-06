@@ -1,0 +1,27 @@
+name: Trivy container image Scan
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  Trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build docker image
+        run: |
+          docker build -t my_project_py:latest .
+
+      - name: Pull Trivy Docker image
+        run: docker pull aquasec/trivy:latest
+
+      - name: Run Trivy scan
+        run: |
+          docker run --rm \
+          -v /var/run/docker.sock:/var/run/docker/sock \
+          aquasec/trivy:latest image my_project_py:latest
