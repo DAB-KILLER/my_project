@@ -20,9 +20,12 @@ jobs:
       - name: Pull Trivy Docker image
         run: docker pull aquasec/trivy:latest
 
+      - name: Create reports folder
+          run: |
+           mkdir -p reports
+
       - name: Run Trivy scan and save report
         run: |
-          mkdir -p reports
           docker run --rm \
           -v /var/run/docker.sock:/var/run/docker.sock \
           -v "${{ github.workspace }}/reports:/reports" \
@@ -30,9 +33,11 @@ jobs:
           --severity HIGH,CRITICAL \
           --format table \
           --output /reports/trivy-report.txt \
+          --exit-code 1 \
           my_project_py:latest
 
       - name: Upload report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
            name: trivy-report
