@@ -20,8 +20,15 @@ jobs:
       - name: Pull Trivy Docker image
         run: docker pull aquasec/trivy:latest
 
-      - name: Run Trivy scan
+      - name: Run Trivy scan and save report
         run: |
+          mkdir -p reports \
           docker run --rm \
           -v /var/run/docker.sock:/var/run/docker.sock \
-          aquasec/trivy:latest image my_project_py:latest
+          -v "${{ github.workspace }}/reports:reports" \
+          aquasec/trivy:latest image \
+          --severity HIGH,CRITICAL \
+          --exit-code 1 \
+          --format table \
+          --output /reports/trivy-report.txt
+          my_project_py:latest
