@@ -22,7 +22,7 @@ jobs:
 
       - name: Create reports folder
           run: |
-           mkdir -p reports
+            mkdir -p reports
 
       - name: Run Trivy scan and save report
         run: |
