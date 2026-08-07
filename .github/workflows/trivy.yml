@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Trivy scan and save report
         run: |
-          mkdir -p reports \
+          mkdir -p reports
           docker run --rm \
           -v /var/run/docker.sock:/var/run/docker.sock \
           -v "${{ github.workspace }}/reports:reports" \
