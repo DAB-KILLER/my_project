@@ -25,7 +25,7 @@ jobs:
           mkdir -p reports
           docker run --rm \
           -v /var/run/docker.sock:/var/run/docker.sock \
-          -v "${{ github.workspace }}/reports:reports" \
+          -v "${{ github.workspace }}/reports:/reports" \
           aquasec/trivy:latest image \
           --severity HIGH,CRITICAL \
           --exit-code 1 \
