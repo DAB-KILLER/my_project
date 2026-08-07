@@ -21,7 +21,7 @@ jobs:
         run: docker pull aquasec/trivy:latest
 
       - name: Create reports folder
-          run: |
+        run: |
             mkdir -p reports
 
       - name: Run Trivy scan and save report
