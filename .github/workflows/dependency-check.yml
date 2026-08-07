@@ -14,32 +14,26 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Pull dependency check image
-        run: docker pull owasp/dependency-check
+        run: docker pull owasp/dependency-check:latest
 
       - name: Create reports folder
         run: mkdir -p reports
-
-      - name: remove old corrupt database
-        run: rm -rf dependency-check-data
 
       - name: Owasp Dependency check
         run: |
           docker run --rm \
           -v "${{ github.workspace }}:/src" \
-          owasp/dependency-check:12.1.8 \
+          owasp/dependency-check:latest \
           --scan /src \
-          --format HTML \
+          --format sarif \
           --out /src/reports \
           --log /src/reports/dependency-check.log \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
           --failOnCVSS 7
-      - name: Find reports folder
-        if: always()
-        run: |
-           find . -name  "dependency-check-report*"
+
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
         with:
          name: dependency-check-report
-         path: reports/
+         path: reports/dependency-check-report.sarif
