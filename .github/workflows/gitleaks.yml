@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-name: Gitleaks secret scan
-=======
+
 name: Gitleaks secret detection
->>>>>>> 7bcaf6196ef46e51950499af50a6af8bb3a3f94d
+
 on:
   push:
     branches:
@@ -11,30 +9,15 @@ on:
     branches:
       - master
 jobs:
-<<<<<<< HEAD
-  gitleaks:
-=======
+
   gileaks:
->>>>>>> 7bcaf6196ef46e51950499af50a6af8bb3a3f94d
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-<<<<<<< HEAD
           fetch-depth: 0
-      - name: Pull Gitleaks Docker image
-        run: docker pull securecodebox/gittleaks:v7.3.0
-      - name: Run Gitleaks
-        run: |
-         docker run --rm \
-         -v "$(pwd):/repo" \
-         securecodebox/gitleaks:v7.3.0 \
-         --path=/repo \
-         --no-git \
-         --verbose
-=======
-           fetch-depth: 0
+
       - name: Pull Gitleaks Docker image
         run: docker pull securecodebox/gitleaks:v7.3.0
       - name: Run Gitleaks
@@ -44,4 +27,3 @@ jobs:
             securecodebox/gitleaks:v7.3.0 \
             --path=/repo \
             --verbose
->>>>>>> 7bcaf6196ef46e51950499af50a6af8bb3a3f94d
