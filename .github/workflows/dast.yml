@@ -32,7 +32,7 @@ jobs:
 
           STAGING_URL: ${{ vars.STAGING_URL }}
 
-  zap-baseline:
+  zap-full-scan:
 
     runs-on: ubuntu-latest
 
@@ -48,7 +48,7 @@ jobs:
 
         run: docker pull zaproxy/zap-stable
 
-      - name: Run OWASP ZAP baseline scan
+      - name: Run OWASP ZAP full  scan
 
         run: |
 
@@ -56,9 +56,10 @@ jobs:
           --user 0 \
           -v "${{ github.workspace }}:/zap/wrk/:rw" \
           zaproxy/zap-stable \
-          zap-baseline.py \
+          zap-full-scan.py \
           -t "$STAGING_URL" \
-          -r zap-baseline.html
+          -r zap-report.html \
+          -j zap-report.json
 
         env:
 
@@ -72,6 +73,8 @@ jobs:
         uses: actions/upload-artifact@v4
 
         with:
-          name: zap-baseline-report
+          name: zap-full-scan-report
 
-          path: zap-baseline.html
+          path: |
+            zap-report.html
+            zap-report.json
