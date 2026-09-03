@@ -53,12 +53,11 @@ jobs:
         run: |
 
           docker run --rm \
-
-            -v "${{ github.workspace }}:/zap/wrk/:rw" \
-            zaproxy/zap-stable \
-            zap-baseline.py \
-            -t "$STAGING_URL" \
-            -r zap-baseline.html
+          -v "${{ github.workspace }}:/zap/wrk/:rw" \
+          zaproxy/zap-stable \
+          zap-baseline.py \
+          -t "$STAGING_URL" \
+          -r zap-baseline.html
 
         env:
 
