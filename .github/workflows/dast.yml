@@ -1,14 +1,9 @@
 name: DAST
 
-
 on:
-
   push:
-
     branches:
-
       - main
-
   workflow_dispatch:
 
 
@@ -76,5 +71,5 @@ jobs:
           name: zap-full-scan-report
 
           path: |
-            zap-report.html
+            zap-report.html \
             zap-report.json
