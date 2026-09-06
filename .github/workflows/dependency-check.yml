@@ -22,7 +22,7 @@ jobs:
       - name: Owasp Dependency check
         run: |
           docker run --rm \
-          -v "${{ github.workspace }}:/src" \
+          -v "${{ github.workspace }}:/src:rw" \
           owasp/dependency-check:latest \
           --scan /src \
           --format JSON \
