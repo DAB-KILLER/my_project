@@ -1,0 +1,140 @@
+├── dast.txt
+├── Dockerfile
+├── .git
+│   ├── COMMIT_EDITMSG
+│   ├── config
+│   ├── description
+│   ├── FETCH_HEAD
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── master
+│   │       └── remotes
+│   │           └── my_project
+│   │               ├── HEAD
+│   │               └── master
+│   ├── objects
+│   │   ├── 0c
+│   │   │   └── b02c3cddb1eda29d31d4e710fe465182b07227
+│   │   ├── 11
+│   │   │   └── d1909d468d17789ce529523766cbb03ab9919d
+│   │   ├── 13
+│   │   │   └── 4eeb23801fe65c64adec0663ce72d1f11aef70
+│   │   ├── 18
+│   │   │   └── 45724145a1c19ce9bc54dec73e65d7620526f1
+│   │   ├── 1d
+│   │   │   └── bd997fcbc2343bcdc0a17398064faa459b33e5
+│   │   ├── 2b
+│   │   │   └── 0dc222b94213e05d0819797ea60870c67773cc
+│   │   ├── 2d
+│   │   │   └── 7a82b00605b2150528b49b2d93a8c6ce7102c6
+│   │   ├── 2e
+│   │   │   └── 70035e03334da5c5f8bb9cc2a7c94a39bf702d
+│   │   ├── 3d
+│   │   │   └── 38f99b8b581515a54e8605fdc5779ca7d508f1
+│   │   ├── 49
+│   │   │   └── 5f586b413eebcda85ffafc3fa164f5125d9f26
+│   │   ├── 4b
+│   │   │   ├── 7f7059517b91665ae5bf09c18b38ac687fb275
+│   │   │   └── 825dc642cb6eb9a060e54bf8d69288fbee4904
+│   │   ├── 4c
+│   │   │   └── 06b7ffeef9022b66e82659352053b8712163c3
+│   │   ├── 4e
+│   │   │   └── 1926da914b79232d87fd46fd4942d755986b35
+│   │   ├── 5f
+│   │   │   ├── 123845eb12587c008ddde43ffa8a98ac53b1d2
+│   │   │   └── 39433dd07985afb05269c22583ce42210e045d
+│   │   ├── 68
+│   │   │   └── 1b26e778ef59ea5285a968c0ab13c49899713e
+│   │   ├── 69
+│   │   │   └── 791ac3017774b2cd3e136deb0e0f2d27e1fafd
+│   │   ├── 74
+│   │   │   └── 825e331c8ba1be52f95167552ed12404c44a64
+│   │   ├── 7f
+│   │   │   └── 287f72c85b4ea9b4a043ab922d740b04dc492b
+│   │   ├── 82
+│   │   │   └── bb232c23edaa96691fa9198a930a9d3e49043b
+│   │   ├── 83
+│   │   │   └── 63b1a4b1abd14fbdb1651b2e4627409827549d
+│   │   ├── 8d
+│   │   │   └── 4c9e13c89284cb849cd5508e4ffffe6c80a0eb
+│   │   ├── 8e
+│   │   │   └── 6bbe3e802ea01ab6a0d8c19832539efc576360
+│   │   ├── 93
+│   │   │   └── faff7f8cab157f53cb06134a95fb14e6b7b6c8
+│   │   ├── aa
+│   │   │   └── 07160bb2c932bc44b73e0a43ec0d0ffe8d67cd
+│   │   ├── ab
+│   │   │   ├── 1e4d8e5a39ff1a4889a71fb5efa1423e616099
+│   │   │   └── 3a0f2976fdba43109959f4b891f7554f026785
+│   │   ├── be
+│   │   │   └── 37ef6c952b73a536e1f055047eb1510715c616
+│   │   ├── c5
+│   │   │   └── 0b75a627bbc80599c89c51c86f8c52b2435d89
+│   │   ├── c9
+│   │   │   └── ce32c8b07130ed6b033115a92cd73fbcace316
+│   │   ├── cb
+│   │   │   └── 7d588fa5f8ad33ad3f4c8ab9c21e56b6b85f39
+│   │   ├── d2
+│   │   │   └── 4bbe814005ab07857c949de7f058e91676e730
+│   │   ├── dd
+│   │   │   └── 101099e459b4761ee0b9e4377b5290d48a9490
+│   │   ├── df
+│   │   │   └── 9f9c0a05b996eec58f0d71d72dbab93c8f9586
+│   │   ├── e1
+│   │   │   └── bde172a9272ef1865518d51c0d9638847d12bc
+│   │   ├── e2
+│   │   │   └── ccf70575e348c8c970543c014bb1c555807dc3
+│   │   ├── e5
+│   │   │   └── 3e4d1992823f63b46dda3982c133c651f1bc72
+│   │   ├── ee
+│   │   │   ├── 60605987ba8b7317ddd9e350fa2356055e6588
+│   │   │   └── ad3355a73db00e7e6ccd6d7448052f0db86927
+│   │   ├── ef
+│   │   │   └── 09ba015dd49f6e9ac8c310c8d12aa15c56c674
+│   │   ├── info
+│   │   └── pack
+│   │       ├── pack-efc31f482cf19244c03330cc25889e2922910350.idx
+│   │       ├── pack-efc31f482cf19244c03330cc25889e2922910350.pack
+│   │       └── pack-efc31f482cf19244c03330cc25889e2922910350.rev
+│   ├── ORIG_HEAD
+│   └── refs
+│       ├── heads
+│       │   └── master
+│       ├── remotes
+│       │   └── my_project
+│       │       ├── HEAD
+│       │       └── master
+│       └── tags
+├── .github
+│   └── workflows
+│       ├── bandit.yml
+│       ├── dast.yml
+│       ├── dependency-check.yml
+│       ├── gitleaks.yml
+│       ├── semgrep.yml
+│       └── trivy.yml
+├── main.py
+├── my_file.py
+├── requirements.txt
+└── zap-rules.tsv
