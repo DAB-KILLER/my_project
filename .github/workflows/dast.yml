@@ -53,7 +53,8 @@ jobs:
           zaproxy/zap-stable \
           zap-full-scan.py \
           -t "$STAGING_URL" \
-          -j /zap/wrk/zap-report.json
+          -r /zap/wrk/zap-report.html \
+          -J /zap/wrk/zap-report.json
 
         env:
 
@@ -70,4 +71,5 @@ jobs:
           name: zap-full-scan-report
 
           path: |
+            zap-report.html
             zap-report.json
