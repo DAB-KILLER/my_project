@@ -62,7 +62,7 @@ jobs:
           STAGING_URL: ${{ vars.STAGING_URL }}
      - name: Check zap rules file
        run: |
-          echo "Workspace : ${{ github.workspace }]"
+          echo "Workspace : ${{ github.workspace }}"
           ls -la
           ls -la zap-rules.tsv
 
