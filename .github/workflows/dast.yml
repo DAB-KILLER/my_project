@@ -54,8 +54,8 @@ jobs:
           zap-full-scan.py \
           -t "$STAGING_URL" \
           -c zap-rules.tsv \
-          -r zap-report.html \
-          -j zap-report.json  \
+          -r /zap/wrk/zap-report.html \
+          -j /zap/wrk/zap-report.json
 
         env:
 
