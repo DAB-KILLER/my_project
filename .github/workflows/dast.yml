@@ -53,7 +53,7 @@ jobs:
           zaproxy/zap-stable \
           zap-full-scan.py \
           -t "$STAGING_URL" \
-          -c zap-rules.tsv \
+          -c /zap/wrk/zap-rules.tsv \
           -r /zap/wrk/zap-report.html \
           -j /zap/wrk/zap-report.json
 
