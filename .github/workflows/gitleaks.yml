@@ -31,7 +31,7 @@ jobs:
           --path=/repo \
           --verbose \
           --report=/repo/reports/gitleaks.json \
-          --report-format=json
+          --format=json
 
       - name: Upload report
         uses: actions/upload-artifact@v4
