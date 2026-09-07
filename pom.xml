@@ -11,5 +11,14 @@
             <artifactId>log4j-core</artifactId>
             <version>2.14.1</version>
         </dependency>
+
+        <!-- Intentionally-vulnerable dependency for testing OWASP Dependency-Check
+             jackson-databind 2.9.9.3 is known to have multiple CVEs. Add only in a
+             test run/branch and remove after testing. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9.3</version>
+        </dependency>
     </dependencies>
 </project>
