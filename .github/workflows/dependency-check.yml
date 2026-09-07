@@ -29,6 +29,7 @@ jobs:
           --format JSON \
           --out /src/reports \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
+          --failOnCVSS 7
 
       - name: Upload report
         if: always()
