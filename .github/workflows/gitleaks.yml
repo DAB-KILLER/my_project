@@ -22,8 +22,19 @@ jobs:
         run: docker pull securecodebox/gitleaks:v7.3.0
       - name: Run Gitleaks
         run: |
+
+          mkdir -p reports
+
           docker run --rm \
-            -v "${{ github.workspace }}:/repo" \
-            securecodebox/gitleaks:v7.3.0 \
-            --path=/repo \
-            --verbose
+          -v "${{ github.workspace }}:/repo" \
+          securecodebox/gitleaks:v7.3.0 \
+          --path=/repo \
+          --verbose \
+          --report=/repo/reports/gitleaks.json \
+          --report-format=json
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitleaks-report
+          path: reports/gitleaks.json
