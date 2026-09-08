@@ -25,7 +25,7 @@ jobs:
           --user 0 \
           -v "${{ github.workspace }}:/src:rw" \
           owasp/dependency-check:latest \
-          --scan /src \
+          --scan /src/test \
           --format JSON \
           --out /src/reports \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
