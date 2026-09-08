@@ -29,7 +29,9 @@ jobs:
           --format JSON \
           --out /src/reports \
           --nvdApiKey "${{ secrets.NVD_API_KEY }}" \
-          --failOnCVSS 7
+          --failOnCVSS 7 \
+          --log /src/reports/dependency-check.log \
+          --verbose
 
       - name: Upload report
         if: always()
