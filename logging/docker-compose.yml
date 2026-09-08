@@ -1,0 +1,64 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    container_name: elasticsearch
+
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+
+    ports:
+      - "127.0.0.1:9200:9200"
+
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    container_name: kibana
+
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - "127.0.0.1:5601:5601"
+
+    depends_on:
+      - elasticsearch
+
+
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    container_name: logstash
+
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+
+    ports:
+      - "127.0.0.1:5044:5044"
+      - "127.0.0.1:8080:8080"
+
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+
+    depends_on:
+      - elasticsearch
+
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
+    container_name: filebeat
+
+    user: root
+
+    environment:
+      - ./filebeat/filebeat/yml:/usr/share/filebeat/filebeats.yml:ro
+      - /var/lib/docker/containers:/vara/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    depends_on:
+      - elasticsearch
+volumes:
+  elasticsearch-data:
