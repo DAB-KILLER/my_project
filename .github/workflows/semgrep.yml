@@ -18,6 +18,7 @@ jobs:
         run: |
 
             docker run --rm \
+            --user "$(id -u):$(id -g)" \
             -v "${{ github.workspace }}:/src" \
             -w /src \
             semgrep/semgrep:canary-nonroot \
