@@ -10,7 +10,7 @@ github_metadata = {
     "branch": os.getenv("GITHUB_REF_NAME"), 
     "github_run_id": os.getenv("GITHUB_RUN_ID") } 
 
-# DON'T FORGET TO ADD THE NORMALIZER FOR TRYIVY !!!!!!!!!!!!!
+
 
 def normalize_bandit(event, github_metadata): 
     return { 
@@ -139,8 +139,31 @@ def normalize_zap(alert, instance, github_metadata):
         }, 
         "source_type": "security_scan" } 
 
+def normalize_trivy(event, target, github_metadata): 
+    cvss = event.get("CVSS", {}) 
+    return { 
+        "scanner": "trivy", 
+        "severity": event.get("Severity"), 
+        "rule_id": event.get("VulnerabilityID"), 
+        "message": event.get("Title") or event.get("Description"), 
+        "file": None, 
+        "line": None, 
+        "package": event.get("PkgName"), 
+        "target": target, 
+        "repository": github_metadata["repository"], 
+        "commit_sha": github_metadata["commit_sha"], 
+        "branch": github_metadata["branch"], 
+        "github_run_id": github_metadata["github_run_id"], 
+        "details": { 
+            "installed_version": event.get("InstalledVersion"), 
+            "fixed_version": event.get("FixedVersion"), 
+            "status": event.get("Status"), 
+            "cwes": event.get("CweIDs"), 
+            "cvss": cvss 
+        }, 
+        "source_type": "security_scan" }
 
-#TRIVY NORMALIZER !!!!!!!!!!!!!!!!!!!!!!
+
 
 def send_event(event):
 	data = json.dumps(event).encode("utf-8")
@@ -194,12 +217,15 @@ def main():
 		        	for instance in alert.get("instances", []): 
 		                normalized_event = normalize_zap( alert, instance, github_metadata ) 
 		                send_event(normalized_event) 
-		
+		elif scanner == "trivy": 
+		    for result in data.get("Results", []): 
+		        target = result.get("Target") 
+		        for event in result.get("Vulnerabilities", []): 
+		            normalized_event = normalize_trivy( event, target, github_metadata ) 
+					send_event(normalized_event) 
 		else: 
     		print(f"Unknown scanner: {scanner}") 
 			sys.exit(1) 
-
-
 
 
 
