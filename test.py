@@ -1,7 +1,3 @@
-import subprocess
+import hashlib
 
-password = "admin123"
-
-subprocess.call("ls -la" , shell=True)
-
-print(password)
+print(hashlib.md5(b"test").hexdigest())
