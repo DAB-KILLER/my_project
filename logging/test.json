@@ -1,0 +1,9 @@
+{
+"source_type": "security_scan",
+"scan_tool": "Trivy",
+"scan_type": "Container",
+"severity": "HIGH",
+"rule_id": "CVE-TEST-001",
+"message": "Test vulnerability",
+"package": "test-package"
+}

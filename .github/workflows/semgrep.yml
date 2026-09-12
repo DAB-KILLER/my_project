@@ -16,10 +16,18 @@ jobs:
         run: docker pull semgrep/semgrep:canary-nonroot
       - name: Run semgrep
         run: |
-          docker run --rm \
+
+            docker run --rm \
             -v "${{ github.workspace }}:/src" \
             -w /src \
             semgrep/semgrep:canary-nonroot \
-            semgrep --config=auto --error
+            semgrep --config=auto --error --json \
+            --output=semgrep-report.json /src
 
+      - name: Upload semgrep report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-report
+          path: semgrep-report.json
 

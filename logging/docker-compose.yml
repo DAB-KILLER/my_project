@@ -22,6 +22,9 @@ services:
 
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+    ports:
       - "127.0.0.1:5601:5601"
 
     depends_on:
@@ -54,11 +57,11 @@ services:
     user: root
 
     environment:
-      - ./filebeat/filebeat/yml:/usr/share/filebeat/filebeats.yml:ro
-      - /var/lib/docker/containers:/vara/lib/docker/containers:ro
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
     depends_on:
-      - elasticsearch
+      - logstash
 volumes:
   elasticsearch-data:

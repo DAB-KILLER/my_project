@@ -31,8 +31,8 @@ jobs:
           -v "${{ github.workspace }}/reports:/reports" \
           aquasec/trivy:latest image \
           --severity HIGH,CRITICAL \
-          --format sarif \
-          --output /reports/trivy-report.sarif \
+          --format json \
+          --output /reports/trivy-report.json \
           --exit-code 1 \
           my_project_py:latest
 
@@ -41,4 +41,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
            name: trivy-report
-           path: reports/trivy-report.sarif
+           path: reports/trivy-report.json

@@ -20,5 +20,11 @@ jobs:
             -v "${{ github.workspace }}:/src" \
             -w /src \
             cytopia/bandit:latest-py3.8 \
-            -r . \
+            -r . -f json -o /src/bandit-report.json \
             --severity-level high
+
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit-report.json
